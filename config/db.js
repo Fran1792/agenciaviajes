@@ -1,9 +1,7 @@
 import Sequelize from 'sequelize';
-
-const db = new Sequelize('fjmorcilloa01_agenciaviajes', 'alumno', 'AlumnoSanz$1',{
-    host: 'iasanz.synology.me',
-    port: 3306,
-    dialect: 'mysql',
+import dotenv from 'dotenv';
+dotenv.config();
+const db = new Sequelize(process.env.CONEXION,{
     define: {
         timestamps: true,
     },
