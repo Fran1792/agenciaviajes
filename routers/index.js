@@ -7,7 +7,7 @@ import {
     paginaDetalleViajes,
     guardarTestimonios
 } from "../controllers/paginaController.js";
-import Destino from '../models/destino.js'; // Importa el modelo Destino
+import Destino from '../models/destino.js';
 
 const router = express.Router();  // Solo crear el router, no `app`
 

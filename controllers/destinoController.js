@@ -1,4 +1,4 @@
-import destino from "../models/destino.js";
+import Destino from "../models/destino.js";
 
 // Este controlador maneja la lógica de sugerir destinos
 export const sugerirDestino = async (req, res) => {
