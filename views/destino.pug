@@ -1,10 +1,10 @@
-extends layout/inicio.pug
+extends ./layout/index
 
-block content
+block contenido
     h1 Descubre un Destino Recomendado
     p ¿No sabes dónde viajar? Pulsa el botón y te daremos una sugerencia.
 
-    form(action="/destino" method="POST")
+    form(action="/destino", method="POST")
         button(type="submit") Sugerir Destino
 
     if destino

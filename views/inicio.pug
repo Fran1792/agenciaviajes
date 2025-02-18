@@ -1,8 +1,10 @@
 extends ./layout/index
+
 block slider
     .slider
         h1 Río de Janeiro
         em aventura
+
 block contenido
     main.container.mt-5
         h2.text-center.mb-5 Sobre Nosotros
@@ -19,6 +21,7 @@ block contenido
                 img(src="/img/inicio_nosotros.jpg", alt="Imagen de Nosotros", class="img-fluid rounded")
 
         include layout/layout_viajes
+
     .descuento
         .container
             .row
@@ -33,3 +36,9 @@ block contenido
     .container
         h2.mt-5.text-center TESTIMONIOS
         include layout/layout_testimonios
+
+    // Agregar el formulario para generar un destino aleatorio
+    .container.mt-5
+        h2.text-center Generar Destino Aleatorio
+        form(action="/destino", method="POST")
+            button(type="submit") Generar Destino Aleatorio

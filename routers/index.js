@@ -1,3 +1,4 @@
+// routers/index.js
 import express from 'express';
 import {
     paginaInicio,
@@ -8,9 +9,7 @@ import {
     guardarTestimonios
 } from "../controllers/paginaController.js";
 
-const app = express();
-const router = express.Router();
-
+const router = express.Router();  // Solo crear el router, no `app`
 
 // Definir rutas principales
 router.get("/", paginaInicio);
@@ -56,12 +55,5 @@ router.post("/destino", (req, res) => {
     res.render("destino", { destino: destinoAleatorio });
 });
 
-// Usar el router
-app.use(router);
-
-// Configuración del puerto
-const PORT = process.env.PORT || 4000;
-app.listen(PORT, () => {
-    console.log(`Servidor funcionando en el puerto ${PORT}`);
-});
-export default router;
+// Exportar solo el router, no `app.use(router)`
+export { router };

@@ -1,33 +1,35 @@
-import express, {json} from 'express';
-import router from './routers/index.js';
-import db from './config/db.js';
-import dotenv from 'dotenv';
-dotenv.config();
-const app = express();
+import express from 'express';
+import { router } from './routers/index.js';  // Asegúrate de que el router esté bien importado
 
+import db from './config/db.js';  // Base de datos
+import dotenv from 'dotenv';
+dotenv.config();  // Cargar variables de entorno
+
+const app = express();
 const port = process.env.PORT || 4000;
 
-//Conectar a la BBDD
+// Conectar a la base de datos
 db.authenticate()
-    .then(()=> console.log('Conectado a la base de datos'))
-    .catch(err=>console.log(err));
+    .then(() => console.log('Conectado a la base de datos'))
+    .catch(err => console.log(err));
 
+// Iniciar el servidor
 app.listen(port, () => console.log(`Escuchando en el puerto ${port}`));
 
-//Habilitar pug
+// Habilitar Pug
 app.set('view engine', 'pug');
 
-app.use((req,res,next) => {
+// Middleware global
+app.use((req, res, next) => {
     const year = new Date().getFullYear();
     res.locals.year = year;
-    res.locals.nombreP  = 'Agencia de Viajes';
+    res.locals.nombreP = 'Agencia de Viajes';
     next();
 });
 
-//Definir la carpeta publica
+// Definir la carpeta pública
 app.use(express.static('public'));
 
-//Agregar body parser para los formularios de entrada
-app.use(express.urlencoded({extended: true}));
 
+// Usar el router importado
 app.use("/", router);
