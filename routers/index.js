@@ -1,4 +1,3 @@
-// routers/index.js
 import express from 'express';
 import {
     paginaInicio,
@@ -8,6 +7,7 @@ import {
     paginaDetalleViajes,
     guardarTestimonios
 } from "../controllers/paginaController.js";
+import Destino from '../models/Destino.js'; // Importa el modelo Destino
 
 const router = express.Router();  // Solo crear el router, no `app`
 
@@ -38,21 +38,23 @@ router.get("/viajes/:slug", async (req, res) => {
 
 router.post("/testimonios", guardarTestimonios);
 
-// Nueva funcionalidad: Sugerencia de Destino
-const destinos = [
-    "París, Francia",
-    "Tokio, Japón",
-    "Río de Janeiro, Brasil",
-    "Roma, Italia",
-    "Bangkok, Tailandia",
-    "Nueva York, EE.UU.",
-    "Sídney, Australia",
-    "El Cairo, Egipto"
-];
+// Nueva funcionalidad: Sugerencia de Destino usando el modelo
+router.post("/destino", async (req, res) => {
+    try {
+        // Obtener un destino aleatorio desde la base de datos
+        const destinos = await Destino.findAll();  // Obtén todos los destinos desde la base de datos
+        const destinoAleatorio = destinos[Math.floor(Math.random() * destinos.length)];  // Selecciona uno aleatorio
 
-router.post("/destino", (req, res) => {
-    const destinoAleatorio = destinos[Math.floor(Math.random() * destinos.length)];
-    res.render("destino", { destino: destinoAleatorio });
+        if (!destinoAleatorio) {
+            return res.status(404).send("No hay destinos disponibles.");
+        }
+
+        // Renderizar la vista con el destino aleatorio
+        res.render("destino", { destino: destinoAleatorio.nombre });
+    } catch (error) {
+        console.log(error);
+        res.status(500).send("Error al sugerir un destino.");
+    }
 });
 
 // Exportar solo el router, no `app.use(router)`
