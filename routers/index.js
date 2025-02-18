@@ -6,7 +6,7 @@ import {
     paginaTestimonios,
     paginaDetalleViajes,
     guardarTestimonios
-} from "./controllers/paginaController.js";
+} from "../controllers/paginaController.js";
 
 const app = express();
 const router = express.Router();
