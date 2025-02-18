@@ -1,5 +1,6 @@
 import express from 'express';
-import router from './routers/index.js';  // Aquí importamos el router
+import { router } from './routers/index.js';
+
 import db from './config/db.js';
 import dotenv from 'dotenv';
 dotenv.config();

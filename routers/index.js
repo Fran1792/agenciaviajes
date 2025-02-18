@@ -59,3 +59,4 @@ router.post("/destino", async (req, res) => {
 
 // Exportar solo el router, no `app.use(router)`
 export { router };
+
