@@ -1,0 +1,11 @@
+extends layout/inicio.pug
+
+block content
+    h1 Descubre un Destino Recomendado
+    p ¿No sabes dónde viajar? Pulsa el botón y te daremos una sugerencia.
+
+    form(action="/destino" method="POST")
+        button(type="submit") Sugerir Destino
+
+    if destino
+        h2 Destino recomendado: #{destino}
