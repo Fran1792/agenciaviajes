@@ -1,9 +1,8 @@
-import Destino from "../models/destino.js";
-
-// Este controlador maneja la lógica de sugerir destinos
-export const sugerirDestino = async (req, res) => {
+export const sugerirDestino = (req, res) => {
     try {
-        // Aquí obtenemos todos los destinos (puedes usar un modelo de base de datos)
+        console.log("🔵 Recibida petición para sugerir destino");
+
+        // Lista de destinos (sin base de datos)
         const destinos = [
             "París, Francia",
             "Tokio, Japón",
@@ -15,13 +14,15 @@ export const sugerirDestino = async (req, res) => {
             "El Cairo, Egipto"
         ];
 
-        // Seleccionamos un destino aleatorio
+        // Seleccionar destino aleatorio
         const destinoAleatorio = destinos[Math.floor(Math.random() * destinos.length)];
 
-        // Pasamos el destino a la vista
-        res.render('destino', { destino: destinoAleatorio });
+        console.log("✅ Destino seleccionado:", destinoAleatorio);
+
+        // Renderizar la vista destino.pug con el destino seleccionado
+        res.render("destino", { destino: destinoAleatorio });
     } catch (error) {
-        console.log(error);
-        res.status(500).send('Error al sugerir destino');
+        console.error("❌ Error en sugerirDestino:", error);
+        res.status(500).send("Error al sugerir destino.");
     }
 };
