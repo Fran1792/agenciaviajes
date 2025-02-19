@@ -1,6 +1,6 @@
 export const sugerirDestino = (req, res) => {
     try {
-        console.log("🔵 Recibida petición para sugerir destino");
+
 
         // Lista de destinos (sin base de datos)
         const destinos = [
@@ -17,7 +17,7 @@ export const sugerirDestino = (req, res) => {
         // Seleccionar destino aleatorio
         const destinoAleatorio = destinos[Math.floor(Math.random() * destinos.length)];
 
-        console.log("✅ Destino seleccionado:", destinoAleatorio);
+
 
         // Renderizar la vista destino.pug con el destino seleccionado
         res.render("destino", { destino: destinoAleatorio });
