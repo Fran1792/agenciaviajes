@@ -22,7 +22,7 @@ export const sugerirDestino = (req, res) => {
         // Renderizar la vista destino.pug con el destino seleccionado
         res.render("destino", { destino: destinoAleatorio });
     } catch (error) {
-        console.error("❌ Error en sugerirDestino:", error);
+
         res.status(500).send("Error al sugerir destino.");
     }
 };
