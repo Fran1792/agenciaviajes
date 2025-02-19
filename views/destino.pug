@@ -1,11 +1,14 @@
 extends ./layout/index
 
 block content
-    h1 Descubre un Destino Recomendado
-    p ¿No sabes dónde viajar? Pulsa el botón y te daremos una sugerencia.
+    .container
+        h1 Descubre un Destino Recomendado
+        p ¿No sabes dónde viajar? Pulsa el botón y te daremos una sugerencia.
 
-    form(action="/destino" method="POST")
-        button(type="submit") Sugerir Destino
+        form(action="/destino" method="POST")
+            button(type="submit" class="btn btn-primary") Sugerir Destino
 
-    if destino
-        h2 Destino recomendado: #{destino}
+        if destino
+            .mt-4.p-3.bg-light.rounded
+                h2 Destino recomendado:
+                p #{destino}
